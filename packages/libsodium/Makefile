@@ -51,23 +51,28 @@ menu "Configuration"
 endmenu
 endef
 
+
+TARGET_CFLAGS += \
+	-std=gnu99
+
 CONFIGURE_ARGS+= \
 	--disable-ssp \
+	--disable-asm \
 	$(if $(CONFIG_LIBSODIUM_MINIMAL),--enable-minimal=yes,--enable-minimal=no)
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include/sodium
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/sodium.h $(1)/usr/include
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/sodium/*.h $(1)/usr/include/sodium
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsodium.{a,so*} $(1)/usr/lib
-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libsodium.pc $(1)/usr/lib/pkgconfig/
+	$(INSTALL_DIR) $(1)/opt/usr/include/sodium
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/sodium.h $(1)/opt/usr/include
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/sodium/*.h $(1)/opt/usr/include/sodium
+	$(INSTALL_DIR) $(1)/opt/usr/lib
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsodium.{a,so*} $(1)/opt/usr/lib
+	$(INSTALL_DIR) $(1)/opt/usr/lib/pkgconfig
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libsodium.pc $(1)/opt/usr/lib/pkgconfig/
 endef
 
 define Package/libsodium/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsodium.so.* $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/opt/usr/lib
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsodium.so.* $(1)/opt/usr/lib/
 endef
 
 $(eval $(call BuildPackage,libsodium))

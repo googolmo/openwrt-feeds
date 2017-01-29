@@ -43,17 +43,17 @@ CONFIGURE_ARGS += \
 	--enable-static \
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/event.h $(1)/usr/include/ev_event_compat.h
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/ev.h $(1)/usr/include/
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/ev++.h $(1)/usr/include/
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libev.{a,so*} $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/opt/include
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/event.h $(1)/opt/include/ev_event_compat.h
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/ev.h $(1)/opt/include/
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/ev++.h $(1)/opt/include/
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libev.{a,so*} $(1)/opt/lib/
 endef
 
 define Package/libev/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libev.so* $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libev.so* $(1)/opt/lib/
 endef
 
 $(eval $(call BuildPackage,libev))
